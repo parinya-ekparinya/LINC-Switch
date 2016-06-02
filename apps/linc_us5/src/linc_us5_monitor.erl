@@ -70,10 +70,10 @@
           %% Operating client pid and xid of request causing the flow update in batch mode, event
           %% These must be the same throughout the batch
           batch  = off   :: off | {pid(), integer(), ofp_flow_update_event()}, 
-          batch_notifs   :: dict(), %% Notifications for each monitoring client pid
+          batch_notifs   :: dict:dict(), %% Notifications for each monitoring client pid
           queue_limit    :: integer(), %% Buffer size: monitoring will be paused when exceeded
-          buffer         :: queue(),   %% Queued updates to be sent 
-          store          :: queue()    %% Withheld add/modify events during paused mode 
+          buffer         :: queue:queue(),   %% Queued updates to be sent 
+          store          :: queue:queue()    %% Withheld add/modify events during paused mode 
          }).
 
 %% Flow update buffer limit. Shall not be less than the expected 

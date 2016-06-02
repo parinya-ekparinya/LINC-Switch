@@ -72,7 +72,7 @@
 start_link(SwitchId, PortConfig) ->
     gen_server:start_link(?MODULE, [SwitchId, PortConfig], []).
 
--spec initialize(integer(), tuple(config, list(linc_port_config()))) -> ok.
+-spec initialize(integer(), tuple:tuple(config, list(linc_port_config()))) -> ok.
 initialize(SwitchId, Config) ->
     LincPorts = ets:new(linc_ports, [public,
                                      {keypos, #linc_port.port_no},
@@ -222,7 +222,7 @@ set_config(SwitchId, PortNo, PortConfig) ->
             gen_server:call(Pid, {set_port_config, PortConfig})
     end.
 
--spec get_features(integer(), ofp_port_no()) -> tuple([ofp_port_feature()],
+-spec get_features(integer(), ofp_port_no()) -> tuple:tuple([ofp_port_feature()],
                                                       [ofp_port_feature()],
                                                       [ofp_port_feature()],
                                                       [ofp_port_feature()]).
@@ -260,7 +260,7 @@ get_all_ports_state(SwitchId) ->
                       gen_server:call(Pid, get_info)
               end, get_all_port_no(SwitchId)).
 
--spec get_all_queues_state(integer()) -> list(tuple(string(), integer(), integer(),
+-spec get_all_queues_state(integer()) -> list(tuple:tuple(string(), integer(), integer(),
                                                     integer(), integer())).
 get_all_queues_state(SwitchId) ->
     lists:flatmap(fun(PortNo) ->

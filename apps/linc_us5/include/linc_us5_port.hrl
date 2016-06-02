@@ -7,11 +7,11 @@
          }).
 
 %% LINC swich port configuration stored in sys.config
--type linc_port_config() :: tuple(interface, string())
-                          | tuple(ip, string())
-                          | tuple(config, tuple())
-                          | tuple(features, tuple())
-                          | tuple(queues, tuple()).
+-type linc_port_config() :: tuple:tuple(interface, string())
+                          | tuple:tuple(ip, string())
+                          | tuple:tuple(config, tuple:tuple())
+                          | tuple:tuple(features, tuple:tuple())
+                          | tuple:tuple(queues, tuple:tuple()).
 
 -type linc_port_type() :: physical | logical | reserved.
 -type linc_queues_state() :: enabled | disabled.

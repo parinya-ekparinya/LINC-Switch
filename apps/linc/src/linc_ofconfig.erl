@@ -132,7 +132,7 @@ get_state(Certs) ->
                           resources = Config#capable_switch.resources ++
                               convert_certificates(Certs)}.
 
--spec get_switch_state(integer()) -> tuple(list(resource()), #logical_switch{}).
+-spec get_switch_state(integer()) -> tuple:tuple(list(resource()), #logical_switch{}).
 get_switch_state(SwitchId) ->
     LogicalSwitchId = "LogicalSwitch" ++ integer_to_list(SwitchId),
     Ports = linc_logic:get_backend_ports(SwitchId),

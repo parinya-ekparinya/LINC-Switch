@@ -116,7 +116,7 @@ close(#state{socket = Socket, port_ref = undefined, epcap_pid = EpcapPid}) ->
 %% TODO: Add typespecs to bpf and procket in general to avoid:
 %% linc_us3_port.erl:446: Function bpf_raw_socket/1 has no local return
 %% warnings in dialyzer.
--spec bpf_raw_socket(string()) -> tuple(integer(), 0).
+-spec bpf_raw_socket(string()) -> tuple:tuple(integer(), 0).
 bpf_raw_socket(Interface) ->
     case bpf:open(Interface) of
         {ok, Socket, _Length} ->
@@ -135,7 +135,7 @@ bpf_raw_socket(Interface) ->
 %% TODO: Add typespecs to packet and procket in general to avoid:
 %% linc_us3_port.erl:462: Function linux_raw_socket/1 has no local return
 %% warnings in dialyzer.
--spec linux_raw_socket(string()) -> tuple(integer(), integer()).
+-spec linux_raw_socket(string()) -> tuple:tuple(integer(), integer()).
 linux_raw_socket(Interface) ->
     {ok, Socket} = packet:socket(),
     Ifindex = packet:ifindex(Socket, Interface),

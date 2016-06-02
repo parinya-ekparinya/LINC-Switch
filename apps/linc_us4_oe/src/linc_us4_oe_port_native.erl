@@ -143,7 +143,7 @@ operstate_change({netlink, _, _, operstate, _, _} = Msg, _, Interface) ->
 %% TODO: Add typespecs to bpf and procket in general to avoid:
 %% linc_us4_oe_port.erl:446: Function bpf_raw_socket/1 has no local return
 %% warnings in dialyzer.
--spec bpf_raw_socket(string()) -> tuple(integer(), 0).
+-spec bpf_raw_socket(string()) -> tuple:tuple(integer(), 0).
 bpf_raw_socket(Interface) ->
     case bpf:open(Interface) of
         {ok, Socket, _Length} ->
@@ -162,7 +162,7 @@ bpf_raw_socket(Interface) ->
 %% TODO: Add typespecs to packet and procket in general to avoid:
 %% linc_us4_oe_port.erl:462: Function linux_raw_socket/1 has no local return
 %% warnings in dialyzer.
--spec linux_raw_socket(string()) -> tuple(integer(), integer()).
+-spec linux_raw_socket(string()) -> tuple:tuple(integer(), integer()).
 linux_raw_socket(Interface) ->
     {ok, Socket} = packet:socket(),
     Ifindex = packet:ifindex(Socket, Interface),
@@ -212,7 +212,7 @@ operstate(_) ->
 unsubscribe_for_operstate_changes(Ref) ->
     ok = netlink:unsubscribe(Ref).
 
--spec epcap_options(string()) -> list(tuple()).
+-spec epcap_options(string()) -> list(tuple:tuple()).
 epcap_options(Interface) ->
     DefaultOptions = [{no_register, true},
                       {promiscuous, true},
@@ -224,13 +224,13 @@ epcap_options(Interface) ->
                       {filter, ""}],
     add_epcap_env_options(DefaultOptions).
 
--spec add_epcap_env_options(list(tuple())) -> list(tuple()).
+-spec add_epcap_env_options(list(tuple:tuple())) -> list(tuple:tuple()).
 add_epcap_env_options(Options) ->
     EpcapEnv = application:get_all_env(epcap),
     add_epcap_env_options(Options, EpcapEnv).
 
--spec add_epcap_env_options(list(tuple()), list(tuple())) ->
-                                                 list(tuple()).
+-spec add_epcap_env_options(list(tuple:tuple()), list(tuple:tuple())) ->
+                                                 list(tuple:tuple()).
 add_epcap_env_options(Options, [{verbose, true} | Rest]) ->
     add_epcap_env_options([{verbose, 2} | Options], Rest);
 add_epcap_env_options(Options, [{stats_interval, Value} = Opt | Rest])
